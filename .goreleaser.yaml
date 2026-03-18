@@ -3,6 +3,8 @@ version: 2
 builds:
   - main: ./cmd/main.go
     binary: misoca
+    ldflags:
+      - -s -w -X github.com/miyanaga/misoca-cli/internal/cmd.Version={{ .Version }}
     env:
       - CGO_ENABLED=0
     goos:
