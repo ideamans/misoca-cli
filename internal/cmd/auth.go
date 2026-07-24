@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/miyanaga/misoca-cli/internal/api"
-	"github.com/miyanaga/misoca-cli/internal/oauth"
+	"github.com/ideamans/misoca-cli/internal/api"
+	"github.com/ideamans/misoca-cli/internal/oauth"
 	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
 )

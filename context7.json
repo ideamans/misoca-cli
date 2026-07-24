@@ -1,0 +1,18 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "misoca — Misoca API CLI",
+  "description": "A command-line client for the Misoca invoicing API: invoices (請求書), estimates (見積書) and delivery slips (納品書) with PDF download, plus contacts, contact groups and items. OAuth 2.0 login with a cached, auto-refreshing token; JSON output; request bodies passed as JSON with individual flags overriding fields. The full agent reference is embedded in the binary behind `misoca llm`.",
+  "folders": ["internal/llmdocs"],
+  "excludeFolders": ["plugins", ".github"],
+  "rules": [
+    "Authentication is OAuth 2.0 via `misoca auth`, which opens a browser and waits for the user. An agent must never run it unattended — ask the user to run it. The token is cached at ~/.config/misoca-cli/token.json and refreshed automatically; MISOCA_CLIENT_ID and MISOCA_CLIENT_SECRET skip the interactive app-creation step. `misoca user me` is the cheapest check that login works.",
+    "List commands do not send a `type` parameter unless --type is given, so the API default (`active`) applies. Pass --type untrashed to see everything that is not in the trash. A document that seems missing is usually filtered out by this default.",
+    "There is no automatic pagination. --per-page caps at 100 and the CLI does not follow pages; advance --page yourself and state how many records an answer covers.",
+    "Invoices carry two independent states. Sent-or-not is submit/unsubmit, filtered with --invoice-status submitted|unsubmitted. Paid-or-not is pay/unpay, filtered with --payment-status paid|unpaid. `unpaid invoices` means --payment-status unpaid.",
+    "`misoca invoice mail <id>` requests physical postal delivery: it costs money and cannot be undone. `misoca estimate distribute` emails the customer. Never run either speculatively.",
+    "Contacts and contact groups are hidden rather than deleted (hide/restore), and their list filter is --trashed — not the --type used by documents.",
+    "Only invoices have submit/unsubmit, pay/unpay and mail. Only estimates have distribute, logo and stamp. Delivery slips support list, get, create and pdf only.",
+    "Request bodies go in --json '<JSON>'. Individual flags override the same fields when both are supplied. Binary output (PDF, logo, stamp) is written with -o <path>.",
+    "The complete reference is embedded in the binary: `misoca llm` (Markdown) or `misoca llm --format json`."
+  ]
+}

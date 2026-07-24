@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/miyanaga/misoca-cli/internal/api"
+	"github.com/ideamans/misoca-cli/internal/api"
 	"github.com/spf13/cobra"
 )
 

@@ -20,6 +20,17 @@ jobs:
         with:
           go-version-file: go.mod
 
+      # PluginVersion は Claude Code プラグインのマニフェストに載る。
+      # タグと食い違うと、実体と違うバージョンを名乗るプラグインが配布される。
+      - name: タグと PluginVersion の一致を確認
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          declared=$(grep -oE 'PluginVersion = "[^"]+"' internal/cmd/root.go | cut -d'"' -f2)
+          if [ "$tag" != "$declared" ]; then
+            echo "::error::タグ $GITHUB_REF_NAME が internal/cmd/root.go の PluginVersion ($declared) と一致しません"
+            exit 1
+          fi
+
       - uses: goreleaser/goreleaser-action@v6
         with:
           version: "~> v2"
