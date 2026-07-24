@@ -11,26 +11,26 @@ var (
 	contactGroupIDFilter string
 	contactTrashed       bool
 
-	contactRecipientName   string
-	contactRecipientTitle  string
-	contactRecipientRuby   string
-	contactTaxOption       string
-	contactCode            string
-	contactNotes           string
-	contactMail            string
-	contactMailCC          string
-	contactZipCode         string
-	contactAddress1        string
-	contactAddress2        string
-	contactName1           string
-	contactName2           string
-	contactName3           string
-	contactName4           string
-	contactTitle2          string
-	contactTelNo           string
-	contactFaxNo           string
-	contactMemo            string
-	contactCreateGroupID   int
+	contactRecipientName  string
+	contactRecipientTitle string
+	contactRecipientRuby  string
+	contactTaxOption      string
+	contactCode           string
+	contactNotes          string
+	contactMail           string
+	contactMailCC         string
+	contactZipCode        string
+	contactAddress1       string
+	contactAddress2       string
+	contactName1          string
+	contactName2          string
+	contactName3          string
+	contactName4          string
+	contactTitle2         string
+	contactTelNo          string
+	contactFaxNo          string
+	contactMemo           string
+	contactCreateGroupID  int
 )
 
 var contactCmd = &cobra.Command{

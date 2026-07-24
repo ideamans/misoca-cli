@@ -16,9 +16,9 @@ var (
 	estimateExpireDate string
 	estimateNumber     string
 
-	distMailSubject    string
-	distMailBody       string
-	distIncludeSelfCC  bool
+	distMailSubject   string
+	distMailBody      string
+	distIncludeSelfCC bool
 )
 
 var estimateCmd = &cobra.Command{

@@ -1,0 +1,13 @@
+{
+  "name": "misoca-cli",
+  "description": "Adds /misoca-usage and /misoca-install skills for Misoca — create and fetch invoices (請求書), estimates (見積書) and delivery slips (納品書), download their PDFs, and manage contacts, contact groups and items from the command line.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Ideamans Inc.",
+    "email": "support@ideamans.com"
+  },
+  "homepage": "https://github.com/ideamans/misoca-cli",
+  "repository": "https://github.com/ideamans/misoca-cli",
+  "license": "MIT",
+  "keywords": ["misoca", "invoice", "estimate", "accounting", "cli", "llm", "agent"]
+}

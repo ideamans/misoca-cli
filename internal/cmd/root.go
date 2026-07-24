@@ -1,8 +1,17 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/ideamans/go-llm-cli-kit/llmcmd"
+	"github.com/spf13/cobra"
+)
 
-var Version = "dev"
+// PluginVersion はこのCLIのリリースバージョンです。
+// plugins/misoca-cli/.claude-plugin/plugin.json の version と一致していることを
+// テストが、git タグと一致していることをリリースワークフローが検査します。
+const PluginVersion = "0.2.0"
+
+// Version はビルド時に上書きされるバージョン文字列です。
+var Version = PluginVersion
 
 var rootCmd = &cobra.Command{
 	Use:     "misoca",
@@ -12,8 +21,13 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
+	rootCmd.Version = Version
 	return rootCmd.Execute()
 }
+
+// Root は組み立て済みのコマンドツリーを実行せずに返します。
+// カタログ生成器が Execute と同じ定義から生成するために使います。
+func Root() *cobra.Command { return rootCmd }
 
 func init() {
 	rootCmd.AddCommand(
@@ -26,4 +40,5 @@ func init() {
 		itemCmd,
 		userCmd,
 	)
+	llmcmd.AddTo(rootCmd, LLMConfig())
 }

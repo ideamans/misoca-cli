@@ -46,6 +46,33 @@ misoca auth
 
 トークンは `~/.config/misoca-cli/token.json` に保存され、以降は自動的にリフレッシュされます。
 
+## AIエージェントから使う
+
+`misoca llm` でAIエージェント向けの詳細リファレンスを出力します。認証・出力形式・
+一覧の絞り込み・帳票ごとの操作の差・注意が必要な操作までを網羅しています。
+コマンドカタログは cobra の定義から生成されるため実装と乖離せず、バイナリに
+埋め込まれているのでオフラインでも動作します。
+
+```bash
+misoca llm                  # Markdown
+misoca llm --format json    # 章ごとのJSON配列
+misoca --llm                # 非推奨エイリアス。どの位置でも動作
+```
+
+Claude Code ではプラグインを導入すると `/misoca-usage` と `/misoca-install` が
+使えます。
+
+```
+/plugin marketplace add ideamans/claude-public-plugins
+/plugin install misoca-cli@ideamans-plugins
+```
+
+同じスキルは Copilot や Cursor など Agent Skills 対応ホストでも利用できます。
+
+```bash
+gh skill install ideamans/misoca-cli/plugins/misoca-cli/skills/misoca-usage --agent copilot
+```
+
 ## コマンド一覧
 
 ### 請求書 (`invoice`)
