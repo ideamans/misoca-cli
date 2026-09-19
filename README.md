@@ -4,20 +4,18 @@
 
 ## インストール
 
-```bash
-go install github.com/miyanaga/misoca-cli/cmd/main.go@latest
-# バイナリ名を misoca にリネーム
-mv $(go env GOPATH)/bin/main $(go env GOPATH)/bin/misoca
-```
+[Releases](https://github.com/ideamans/misoca-cli/releases) から環境に合ったアーカイブを取得し、
+中の `misoca` を PATH の通った場所に置いてください。
 
-または、リポジトリをクローンしてビルド:
+ソースからビルドする場合:
 
 ```bash
-git clone https://github.com/miyanaga/misoca-cli.git
+git clone https://github.com/ideamans/misoca-cli.git
 cd misoca-cli
-go build -o misoca ./cmd/main.go
-cp misoca /usr/local/bin/
+go build -o misoca ./cmd
 ```
+
+Claude Code では、プラグインの `/misoca-install` スキルが導入まで行います（後述）。
 
 ## 初期設定（認証）
 
