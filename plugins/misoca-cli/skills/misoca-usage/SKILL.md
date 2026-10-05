@@ -23,7 +23,10 @@ Missing binary? Run the `misoca-install` skill.
 `misoca user me` returning the account details means OAuth is set up. If it
 fails, **do not run `misoca auth` yourself** — it opens a browser and waits for
 the user. Ask them to run it; the token is then cached in
-`~/.config/misoca-cli/token.json` and refreshed automatically.
+`~/.config/misoca-cli/token.json` and refreshed automatically. On a headless
+server, tell them it prints the URL to open on their own machine, and that
+they paste back the `http://localhost:18080/callback?code=...` URL they are
+redirected to.
 
 ## 2. Read the reference
 

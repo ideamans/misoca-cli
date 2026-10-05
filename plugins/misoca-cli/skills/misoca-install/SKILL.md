@@ -96,3 +96,9 @@ run `misoca auth` themselves** — it opens a browser and waits for their
 approval, so it cannot be done for them. They will need a Misoca application's
 client id and secret (or the interactive flow will walk them through creating
 one), and the callback URL `http://localhost:18080/callback`.
+
+On a machine without a browser (SSH, a server), it still works: `misoca auth`
+always prints the authorization URL. The user opens it in a browser on their
+own machine, approves, and pastes the URL they are redirected to
+(`http://localhost:18080/callback?code=...`, which shows a connection error —
+that is fine) back into the terminal. `--no-browser` skips opening one.

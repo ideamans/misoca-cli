@@ -15,6 +15,16 @@ Misoca APIのOAuth2認証を行います。
 未設定の場合はアプリケーション作成から案内します。
 トークンは ~/.config/misoca-cli/token.json に保存され、自動的にリフレッシュされます。
 
+開くURLは常に表示されます。ブラウザの無いサーバーでは、表示されたURLを
+手元のブラウザで開いて許可し、リダイレクト先（http://localhost:18080/callback?code=...、
+接続エラーのページになって構いません）のURLをアドレスバーからコピーして
+ターミナルに貼り付けてください。認証コードだけを貼り付けても構いません。
+DISPLAY の無い Linux ではブラウザを自動では開きません（--no-browser と同じ）。
+
+| flag | type | default | description |
+| --- | --- | --- | --- |
+| `--no-browser` | bool | `false` | ブラウザを開かず、URLの表示だけを行う（SSH先のサーバーなど） |
+
 ## `misoca contact`
 
 送り先の操作
