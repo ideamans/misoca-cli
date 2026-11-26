@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"net/url"
 
 	"github.com/spf13/cobra"
 )
@@ -42,12 +41,17 @@ var contactCmd = &cobra.Command{
 var contactListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "送り先の一覧を取得",
+	Long: `送り先の一覧を取得
+
+API は1ページ25件が既定で、--per-page は最大100件。CLI は自動で全ページを辿らないので、
+全件が要るときは --per-page 100 で --page を 1, 2, 3… と進め、空の配列が返るまで繰り返す。
+件数が --per-page より少ないページが途中に出ることがあるので、それを最後のページと見なさないこと。`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		c, err := newClient()
 		if err != nil {
 			return err
 		}
-		q := url.Values{}
+		q := listQuery()
 		if contactGroupIDFilter != "" {
 			q.Set("contact_group_id", contactGroupIDFilter)
 		}
@@ -198,6 +202,7 @@ var contactRestoreCmd = &cobra.Command{
 
 func init() {
 	// list
+	addListFlags(contactListCmd)
 	contactListCmd.Flags().StringVar(&contactGroupIDFilter, "contact-group-id", "", "取引先グループIDでフィルタ")
 	contactListCmd.Flags().BoolVar(&contactTrashed, "trashed", false, "非表示の送り先を取得")
 

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"net/url"
 
 	"github.com/spf13/cobra"
 )
@@ -26,12 +25,17 @@ var contactGroupCmd = &cobra.Command{
 var contactGroupListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "取引先グループの一覧を取得",
+	Long: `取引先グループの一覧を取得
+
+API は1ページ25件が既定で、--per-page は最大100件。CLI は自動で全ページを辿らないので、
+全件が要るときは --per-page 100 で --page を 1, 2, 3… と進め、空の配列が返るまで繰り返す。
+件数が --per-page より少ないページが途中に出ることがあるので、それを最後のページと見なさないこと。`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		c, err := newClient()
 		if err != nil {
 			return err
 		}
-		q := url.Values{}
+		q := listQuery()
 		if contactGroupTrashed {
 			q.Set("trashed", "true")
 		}
@@ -134,6 +138,7 @@ var contactGroupRestoreCmd = &cobra.Command{
 
 func init() {
 	// list
+	addListFlags(contactGroupListCmd)
 	contactGroupListCmd.Flags().BoolVar(&contactGroupTrashed, "trashed", false, "非表示の取引先グループを取得")
 
 	// create

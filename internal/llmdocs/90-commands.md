@@ -79,9 +79,17 @@ misoca contact hide <id>
 
 送り先の一覧を取得
 
+送り先の一覧を取得
+
+API は1ページ25件が既定で、--per-page は最大100件。CLI は自動で全ページを辿らないので、
+全件が要るときは --per-page 100 で --page を 1, 2, 3… と進め、空の配列が返るまで繰り返す。
+件数が --per-page より少ないページが途中に出ることがあるので、それを最後のページと見なさないこと。
+
 | flag | type | default | description |
 | --- | --- | --- | --- |
 | `--contact-group-id` | string | — | 取引先グループIDでフィルタ |
+| `--page` | int | `0` | ページ番号 |
+| `--per-page` | int | `0` | 1ページあたりの件数 (最大100) |
 | `--trashed` | bool | `false` | 非表示の送り先を取得 |
 
 ### `misoca contact restore`
@@ -131,8 +139,16 @@ misoca contact-group hide <id>
 
 取引先グループの一覧を取得
 
+取引先グループの一覧を取得
+
+API は1ページ25件が既定で、--per-page は最大100件。CLI は自動で全ページを辿らないので、
+全件が要るときは --per-page 100 で --page を 1, 2, 3… と進め、空の配列が返るまで繰り返す。
+件数が --per-page より少ないページが途中に出ることがあるので、それを最後のページと見なさないこと。
+
 | flag | type | default | description |
 | --- | --- | --- | --- |
+| `--page` | int | `0` | ページ番号 |
+| `--per-page` | int | `0` | 1ページあたりの件数 (最大100) |
 | `--trashed` | bool | `false` | 非表示の取引先グループを取得 |
 
 ### `misoca contact-group restore`
