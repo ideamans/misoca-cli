@@ -150,6 +150,7 @@ misoca ds pdf <id> -o slip.pdf               # PDF取得
 misoca contact list                          # 一覧
 misoca contact list --contact-group-id 123   # 取引先グループで絞り込み
 misoca contact list --trashed                # 非表示の送り先を取得
+misoca contact list --per-page 100 --page 2  # 2ページ目（既定は1ページ25件）
 misoca contact get <id>                      # 詳細取得
 misoca contact create --json '{...}'         # 作成
 misoca contact hide <id>                     # 非表示にする
@@ -161,11 +162,16 @@ misoca contact restore <id>                  # 再表示する
 ```bash
 misoca cg list                               # 一覧
 misoca cg list --trashed                     # 非表示を含む
+misoca cg list --per-page 100 --page 2       # 2ページ目（既定は1ページ25件）
 misoca cg get <id>                           # 詳細取得
 misoca cg create --json '{...}'              # 作成
 misoca cg hide <id>                          # 非表示にする
 misoca cg restore <id>                       # 再表示する
 ```
+
+送り先・取引先グループの一覧も1ページ25件が既定です。全件を見るときは `--per-page 100` で
+`--page` を進め、空の配列が返るまで繰り返してください（途中のページが100件に満たないことがあり、
+件数の少ないページが最後とは限りません）。
 
 ### 品目 (`item`)
 

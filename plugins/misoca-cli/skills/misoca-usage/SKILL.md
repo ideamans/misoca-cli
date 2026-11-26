@@ -42,9 +42,13 @@ Embedded in the binary (~570 lines), so it matches the installed version.
 - **`--type` is not sent unless you pass it**, so you get the API default
   (`active`). If the user says an invoice is missing, try
   `--type untrashed` before concluding it does not exist.
-- **There is no automatic pagination.** `--per-page` caps at 100, and the CLI
-  does not follow pages for you. Advance `--page` yourself and say how many
-  records your answer covers.
+- **There is no automatic pagination.** Every list (invoices, estimates,
+  delivery slips, items, contacts, contact groups) returns 25 records by
+  default; `--per-page` caps at 100, and the CLI does not follow pages for you.
+  Advance `--page` until an empty array comes back — a page shorter than
+  `--per-page` is not necessarily the last one — and say how many records your
+  answer covers. A contact or contact group "missing" from `contact list` /
+  `contact-group list` is usually on a later page.
 
 Two independent invoice states, easy to confuse:
 
